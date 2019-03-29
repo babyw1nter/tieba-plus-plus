@@ -28,10 +28,6 @@ app.get('/', (req, res) => {
 var defaultThreadUrl = ''; // 没有参数时的默认帖子链接 
 var defaultOnlyLookHeUser = ''; 
 
-if (!defaultThreadUrl) {
-  console.log(colors.bold.red('没有指定帖子链接, 您是想下载空气吗？qwq'));
-  return;
-}
 var threadUrl = process.argv[2] ? process.argv[2] : defaultThreadUrl;
 var threadInfo = {
   threadId: (() => {
@@ -58,6 +54,11 @@ var threadInfo = {
       element: []
     }
   }
+}
+
+if (!threadUrl) {
+  console.log(colors.bold.red('没有指定帖子链接, 您是想下载空气吗？qwq'));
+  return;
 }
 
 console.log(colors.bgGreen.black(' DONE ') + (' 配置初始化完成! 正在获取帖子信息中, 请稍后...').green);
